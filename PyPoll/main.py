@@ -42,37 +42,64 @@ with open(csvpath) as csvfile:
     print(header)
     print(list)
 
-# Create the lists to search through
+# # Create the lists to search through
     voter_list = []
-    candidate_list = ["Correy", "Khan", "Li", "O'Tooley"]
-    total_votes = []
-    # total_votes = 0
-    vote_percent = 0
+    candidate_list = []
+    # vote_percent = 0
 
-    # function to get unique values 
-    def unique(candidate_list): 
-      
-    # # Traverse through all list elements 
-    #     for name in candidate_list: 
-    #         # check if exists in unique_list or not 
-    #         if name not in candidate_list: 
-    #             candidate_list.append(name) 
-    # # print list 
-    #     for Name in candidate_list: 
-    #         print(name) 
+# function to get unique values 
+# def unique(candidate_list): 
+    # khan_count = candidate_list.count("Khan") 
 
     # Read each row of data after the header
-        for i, row in enumerate(csvreader):
-            voter_list.append(row[0])
-            # candidate_list.append(row[2])
-            if name not in candidate_list: 
-                candidate_list.append(name) 
-        # print list 
-        for Name in candidate_list: 
-    #         print(name) 
-            total_votes = len(voter_list)
-            print(total_votes)
-            print(candidate_list[2])
+    for i, row in enumerate(csvreader):
+        voter_list.append(int(row[0]))
+        candidate_list.append(row[2])
+
+        # if name not in candidate_list: 
+        #     print(candidate_list(row[i])) 
+    total_votes = len(voter_list)
+    correy_count = candidate_list.count("Correy")
+    khan_count = candidate_list.count("Khan")
+    li_count = candidate_list.count("Li")
+    otooley_count = candidate_list.count("O'Tooley")
+
+    # print list
+    print("--------------------------------")
+    print("Election Results")
+    print("--------------------------------")
+    print(f"Total Votes: {total_votes}") 
+    print("--------------------------------")
+    # print(f"Total Votes for Correy: {candidate_list}")
+    print(f"Total Votes for Correy: {correy_count}")
+    print(f"Total Votes for Khan: {khan_count}")
+    print(f"Total Votes for Li: {li_count}")
+    print(f"Total Votes for O'Tooley: {otooley_count}")
+
+    # print(f"Total Votes for Li: {candidate_list}")
+    # print(f"Total Votes for O'Tooley: {candidate_list}")
+
+    # traverse for all elements 
+    # for name in candidate_list: 
+    #     # check if exists in unique_list or not 
+    #     if name not in unique_candidate_list: 
+    #         unique_candidate_list.append(name) 
+    # print list 
+    # for x in unique_candidate_list: 
+    #     print(name)
+
+    #     list.count(value)
+    #     x = fruits.count("cherry")
+
+
+#     # function to get unique values 
+#     def unique(candidate_list): 
+      
+#         for name in candidate_list: 
+#             print(name) 
+#             total_votes = len(voter_list)
+#             print(total_votes)
+#             print(candidate_list[2])
 
 # Store the file path associated with the file (note the backslash may be OS specific)
 # file = 'PyPoll/Analysis/PyPollAnalysis.csv'
