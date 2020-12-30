@@ -63,21 +63,22 @@ with open(csvpath) as csvfile:
     khan_count = candidate_list.count("Khan")
     li_count = candidate_list.count("Li")
     otooley_count = candidate_list.count("O'Tooley")
+    correy_percent = round(correy_count / total_votes * 100, 2)
+    khan_percent = round(khan_count / total_votes * 100, 2)
+    li_percent = round(li_count / total_votes * 100, 2)
+    otooley_percent = round(otooley_count / total_votes * 100, 2)
 
-    # print list
+    # Print list
     print("--------------------------------")
     print("Election Results")
     print("--------------------------------")
     print(f"Total Votes: {total_votes}") 
     print("--------------------------------")
-    # print(f"Total Votes for Correy: {candidate_list}")
-    print(f"Total Votes for Correy: {correy_count}")
-    print(f"Total Votes for Khan: {khan_count}")
-    print(f"Total Votes for Li: {li_count}")
-    print(f"Total Votes for O'Tooley: {otooley_count}")
-
-    # print(f"Total Votes for Li: {candidate_list}")
-    # print(f"Total Votes for O'Tooley: {candidate_list}")
+    print(f"Correy: {correy_percent}% ({correy_count})")
+    print(f"Khan: {khan_percent}% ({khan_count})")
+    print(f"Li: {li_percent}% ({li_count})")
+    print(f"O'Tooley: {otooley_percent}% ({otooley_count})")
+    print("--------------------------------")
 
     # traverse for all elements 
     # for name in candidate_list: 
@@ -87,10 +88,6 @@ with open(csvpath) as csvfile:
     # print list 
     # for x in unique_candidate_list: 
     #     print(name)
-
-    #     list.count(value)
-    #     x = fruits.count("cherry")
-
 
 #     # function to get unique values 
 #     def unique(candidate_list): 
