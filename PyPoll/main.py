@@ -45,7 +45,6 @@ with open(csvpath) as csvfile:
 # # Create the lists to search through
     voter_list = []
     candidate_list = []
-    # vote_percent = 0
 
 # function to get unique values 
 # def unique(candidate_list): 
@@ -56,8 +55,6 @@ with open(csvpath) as csvfile:
         voter_list.append(int(row[0]))
         candidate_list.append(row[2])
 
-        # if name not in candidate_list: 
-        #     print(candidate_list(row[i])) 
     total_votes = len(voter_list)
     correy_count = candidate_list.count("Correy")
     khan_count = candidate_list.count("Khan")
@@ -79,7 +76,13 @@ with open(csvpath) as csvfile:
     print(f"Li: {li_percent}% ({li_count})")
     print(f"O'Tooley: {otooley_percent}% ({otooley_count})")
     print("--------------------------------")
+        
+    players = {"Correy": correy_count, "Khan": khan_count, "Li": li_count, "O'Tooley": otooley_count}
 
+# Now it is much easier to find out who wins:
+    winner = max(players, key=players.get)
+    print(f"Winner: {winner}")
+    print("--------------------------------")
     # traverse for all elements 
     # for name in candidate_list: 
     #     # check if exists in unique_list or not 
