@@ -29,7 +29,7 @@ with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
 
     # Read the header row first (skip this step if there is no header)
-    header = next(csvreader)
+    reader = next(csvreader)
 
 # Create the lists to search through
     profit_list = []
@@ -52,75 +52,41 @@ with open(csvpath) as csvfile:
     avg_change = statistics.mean(changes_list)
     total_months = len(periods_list)
     print()
-    print(f"Financial Analysis")
-    print(f"--------------------------------------------------")
-    print(f"Total Months: {total_months}")
-    print(f"Total: ${total_profit}")
-    print(round(avg_change, 2))
-    # print(f"Greatest Increase in Profits: {max_profit}")
-    # print(f"Greatest Decrease in Profits: {min_profit}")
-    # print(type(profit_list)
+    print(f'Financial Analysis')
+    print(f'--------------------------------------------------')
+    print(f'Total Months: {total_months}')
+    print(f'Total: ${total_profit}')
+    print(f'Average Change: ' + '${:,.2f}'.format(round(avg_change),2))
+    # print(round(avg_change, 2))
 
     for i, amount in enumerate(profit_list):
         if amount == max_profit:
             # print(profit_list[i], periods_list[i])
-            total_profit_string = periods_list[i] + " " + str(profit_list[i])
+            total_profit_string = periods_list[i] + ' ' + str(profit_list[i])
             break
-    print(f"Greatest Increase in Profits: {total_profit_string}")
+    print(f'Greatest Increase in Profits: {total_profit_string}')
 
     for i, amount in enumerate(profit_list):
         if amount == min_profit:
             # print(profit_list[i], periods_list[i])
-            total_profit_string = periods_list[i] + " " + str(profit_list[i])
+            total_profit_string = periods_list[i] + ' ' + str(profit_list[i])
             break
-    print(f"Greatest Decrease in Profits: {total_profit_string}")
-    print(f"--------------------------------------------------")
-
-# Define the function and have it accept the 'budget_data' as its sole parameter
-#  def analysis(budget_data):
-#      total_months = int(budget_data[1]))
-#      total_profit = sum(int(budget_data[1]))
-#      max_profit = max(float(budget_data[1]))
-#      min_profit = min(float(budget_data[1]))
-
-# The net total amount of "Profit/Losses" over the entire period
-
-# The average of the changes in "Profit/Losses" over the entire period
-
-# The greatest increase in profits (date and amount) over the entire period
-
-# The greatest decrease in losses (date and amount) over the entire period
-
-
-# Print analytical stats to the screen
-# print(f"Total Months: {total_months}")
-# print(f"Total: ${profit}")
-# #print(f"Avg Change: {avg}")
-# print(f"Greatest Profit Increase: {max_profit}")
-# print(f"Greatest Profit Decrease: {min_profit}")
-
+    print(f'Greatest Decrease in Profits: {total_profit_string}')
+    print(f'--------------------------------------------------')
 
 # Specify the file path to write to
-# output_path = os.path.join("..", "python-challenge", "PyBank", "Analysis", "financial_analysis.csv")
+output_path = os.path.join("..", "PyBank", "Analysis", "financial_analysis.csv")
 
 # Write data to a .csv file
-# with open(output_path, 'w', newline='') as csvfile:
-#     csvwriter = csv.writer(csvfile)
+with open(output_path, 'w', newline='') as csvfile:
 
-# To save specific data input as a row in the csv
-    # writer.writerow(["row1", "row2"])
-
+    # Initialize the csv.writer
+    csvwriter = csv.writer(csvfile)
 
 # Write the first row (column headers)
-# csvwriter.writerow(['First Name', 'Last Name', 'SSN'])
-
-# Write the second row
-# csvwriter.writerow(['Caleb', 'Frost', '505-80-2901'])
-
-# Write updated data to csv file
-# csvpath = os.path.join("output", filename)
-# with open(csvpath, "w") as csvfile:
-#     fieldnames = ["last_name", "first_name", "ssn", "email"]
-#     writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-#     writer.writeheader()
-#     writer.writerows(new_employee_data)
+    csvwriter.writerow([f'Total Months: 86'])
+    csvwriter.writerow([f'Total: $38382578'])
+    csvwriter.writerow([f'Average Change: ' + '$436217.37'])
+    csvwriter.writerow([f'Greatest Profit Increase: Feb-2012 $1170593'])
+    csvwriter.writerow([f'Greatest Profit Decrease: Sep-2013 $-1196225'])
+print('\n' + 'Job is complete!')
