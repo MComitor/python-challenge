@@ -27,9 +27,11 @@
 import os
 import csv
 import statistics
+import pandas as pd
 
 # Path to my csv file
 csvpath = os.path.join('..','PyPoll', 'Resources', 'election_data.csv')
+
 # print(csvpath)
 
 with open(csvpath) as csvfile:
@@ -38,17 +40,11 @@ with open(csvpath) as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
 
     # Read the header row first (skip this step if there is no header)
-    header = next(csvreader)
-    print(header)
-    print(list)
+    reader = next(csvreader)
 
-# # Create the lists to search through
+# Create the lists to search through
     voter_list = []
     candidate_list = []
-
-# function to get unique values 
-# def unique(candidate_list): 
-    # khan_count = candidate_list.count("Khan") 
 
     # Read each row of data after the header
     for i, row in enumerate(csvreader):
@@ -76,49 +72,45 @@ with open(csvpath) as csvfile:
     print(f"Li: {li_percent}% ({li_count})")
     print(f"O'Tooley: {otooley_percent}% ({otooley_count})")
     print("--------------------------------")
-        
-    players = {"Correy": correy_count, "Khan": khan_count, "Li": li_count, "O'Tooley": otooley_count}
 
-# Now it is much easier to find out who wins:
-    winner = max(players, key=players.get)
-    print(f"Winner: {winner}")
-    print("--------------------------------")
-    # traverse for all elements 
-    # for name in candidate_list: 
-    #     # check if exists in unique_list or not 
-    #     if name not in unique_candidate_list: 
-    #         unique_candidate_list.append(name) 
-    # print list 
-    # for x in unique_candidate_list: 
-    #     print(name)
+# Create dictionary of candidates   
+candidates = {"Correy": correy_count, 
+                "Khan": khan_count,
+                "Li": li_count,
+                "O'Tooley": otooley_count}                 
 
-#     # function to get unique values 
-#     def unique(candidate_list): 
-      
-#         for name in candidate_list: 
-#             print(name) 
-#             total_votes = len(voter_list)
-#             print(total_votes)
-#             print(candidate_list[2])
+# Determine the winner
+winner = max(candidates, key=candidates.get)
+print(f"Winner: {winner}!!!")
+print("--------------------------------")
 
-# Store the file path associated with the file (note the backslash may be OS specific)
-# file = 'PyPoll/Analysis/PyPollAnalysis.csv'
+# Specific file to write to 
+output_path = os.path.join("..", "PyPoll", "Analysis", "PyPollAnalysis.csv")
 
-# Open the file in "read" mode ('r') and store the contents in the variable "text"
-# with open(file, 'w') as csv:
+# Open the file using the "write" mode. Specifiy the variable to hold the contents
+with open(output_path, 'w', newline='') as csvfile:
 
-# This stores a reference to a file stream
-#     print(text)
+    # Initialize the csv.writer
+    csvwriter = csv.writer(csvfile)
+    # # Create a dictionary
+    # election_results = {"Total Votes": total_votes, 
+    #                     "Candidate Name": candidates, 
+    #                     "PTotal Votes": khan_percent, 
+    #                     "Winner": winner}
+    # # print(election_results)
 
-# Store all of the text inside a variable called "lines"
-#     lines = text.read()
+    # Create a DataFrame using a dictionary of lists
+    election_results_df = pd.DataFrame({
+        "Candidate": ["Correy", "Khan", "Li", "O'Tooley"],
+        "Votes": [704200, 2218231, 492940, 105630],
+        "Percentage of Total": [20.0, 63.0, 14.0, 3.0]
+    })
 
-# Print the contents of the text file to "lines"
-#     print(lines)
-
-    # Creating a dictionary
-    # election_results = {'Total Votes': 3, 'Candidate Name': 5, 'Winner': 1}
-    # Printing the dictionary
-    # print(election_results)
-
-
+    # Write rows to the csv file
+    csvwriter.writerow(['Election Results'])
+    csvwriter.writerow(['Total Votes: ' + str(total_votes)])
+    csvwriter.writerow([])
+    csvwriter.writerow([election_results_df])
+    csvwriter.writerow([])
+    csvwriter.writerow(['Winner: ' + (winner)])
+print('\n' + "Job is complete!")
