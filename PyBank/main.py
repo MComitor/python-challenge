@@ -14,8 +14,8 @@ with open(csvpath) as csvfile:
 
 # Create the lists to search through
     profit_list = []
-    changes_list = []
     periods_list = []
+    changes_list = []
     last_month = 0
 
     # for row in csvreader:
@@ -39,6 +39,7 @@ with open(csvpath) as csvfile:
     print(f'Total: ' + '${:,.2f}'.format(total_profit))
     print(f'Average Change: ' + '${:,.2f}'.format(round(avg_change),2))
     # print(round(avg_change, 2))
+    print(f'Total Months: ' + str(total_months))
 
     for i, amount in enumerate(profit_list):
         if amount == max_profit:
