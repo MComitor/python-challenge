@@ -26,7 +26,6 @@
 # Import the os and csv modules
 import os
 import csv
-import statistics
 import pandas as pd
 
 # Path to my csv file
