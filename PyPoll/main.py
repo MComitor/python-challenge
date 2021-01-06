@@ -73,7 +73,7 @@ with open(csvpath) as csvfile:
     print(f"O'Tooley: {otooley_percent}% ({otooley_count})")
     print("--------------------------------")
 
-# Create dictionary of candidates   
+# Create dictionary of candidates using total votes per candidate   
 candidates = {"Correy": correy_count, 
                 "Khan": khan_count,
                 "Li": li_count,
@@ -84,26 +84,20 @@ winner = max(candidates, key=candidates.get)
 print(f"Winner: {winner}!!!")
 print("--------------------------------")
 
-# Specific file to write to 
+# # Specific file to write to 
 output_path = os.path.join("..", "PyPoll", "Analysis", "PyPollAnalysis.csv")
 
-# Open the file using the "write" mode. Specifiy the variable to hold the contents
+# # Open the file using the "write" mode. Specifiy the variable to hold the contents
 with open(output_path, 'w', newline='') as csvfile:
 
     # Initialize the csv.writer
     csvwriter = csv.writer(csvfile)
-    # # Create a dictionary
-    # election_results = {"Total Votes": total_votes, 
-    #                     "Candidate Name": candidates, 
-    #                     "PTotal Votes": khan_percent, 
-    #                     "Winner": winner}
-    # # print(election_results)
 
-    # Create a DataFrame using a dictionary of lists
+    # # Create a DataFrame using a dictionary of lists
     election_results_df = pd.DataFrame({
         "Candidate": ["Correy", "Khan", "Li", "O'Tooley"],
         "Votes": [704200, 2218231, 492940, 105630],
-        "Percentage of Total": [20.0, 63.0, 14.0, 3.0]
+        "Percentage of Total": [20.0'%', 63.0, 14.0, 3.0]
     })
 
     # Write rows to the csv file
@@ -113,4 +107,4 @@ with open(output_path, 'w', newline='') as csvfile:
     csvwriter.writerow([election_results_df])
     csvwriter.writerow([])
     csvwriter.writerow(['Winner: ' + (winner)])
-print('\n' + "Job is complete!")
+    print('\n' + "Job is complete!")
