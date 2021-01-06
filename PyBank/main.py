@@ -39,7 +39,6 @@ with open(csvpath) as csvfile:
     print(f'Total: ' + '${:,.2f}'.format(total_profit))
     print(f'Average Change: ' + '${:,.2f}'.format(round(avg_change),2))
     # print(round(avg_change, 2))
-    print(f'Total Months: ' + str(total_months))
 
     for i, amount in enumerate(profit_list):
         if amount == max_profit:
